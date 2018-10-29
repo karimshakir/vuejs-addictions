@@ -8,12 +8,20 @@
     </ul>
 
     <div>
-      
+          
+<select v-model="newOccurrence.addiction_id">
+  <option v-for="addiction in addictions" v-bind:value="addiction.id">
+    {{ addiction.name }}
+  </option>
+</select>
+<span> {{  }} </span>
+
+
+<br>
+    <br>
       <button v-on:click="addOccurrence()">Submit</button>
-        Addiction: <input v-model="newOccurrence.addiction_id">
-        Location:  <input v-model="newOccurrence.location">
-        Circumstance:  <input v-model="newOccurrence.circumstance">
-      <p v-for="occurrence in occurrences">{{ occurrence }}--------backend data</p>   
+
+      <p v-for="occurrence in occurrences">{{ occurrence }}--------backend data</p>                                
     </div>
 
   </div>
@@ -31,14 +39,21 @@ export default {
     data: function() {
       return {
         occurrences: [],
-        newOccurrence: {addiction_id: 2, location: "", circumstance: "", craving: false},
+        newOccurrence: {               
+                        addiction_id: "",
+                        location: "",
+                        circumstance: "",
+                        amount: "",
+                        cost: "",
+                        craving: ""
+                        },
+        addictions: [],
+        newAddiction: "",
         errors: []
-        // ,nameFilter: "",
-        // sortAttribute: 'name',
-        // sortOrder: 1
       };
-    },
 
+
+    },
 
     created: function() {
       axios
@@ -46,28 +61,62 @@ export default {
         .then(response => {
           this.occurrences = response.data;
         });
+
+      axios
+        .get("http://localhost:3000/api/addictions")
+        .then(response => {
+          this.addictions = response.data;
+        });
     },
 
     methods: {
+      toggleCraving: function(inputOccurrence) {
+        inputOccurrence.craving = !inputOccurrence.craving;
+      },
+
       addOccurrence: function() {
-        
         this.errors = [];
         var params = {
-          location: this.newOccurrence.location,
-          circumstance: this.newOccurrence.circumstance
-        };
-
+                      addiction_id: this.newOccurrence.addiction_id,
+                      location: this.newOccurrence.location,
+                      circumstance: this.newOccurrence.circumstance,
+                      amount: this.newOccurrence.amount,
+                      cost: this.newOccurrence.cost,
+                      craving: this.newOccurrence.craving
+                      };
+        
         axios
           .post("http://localhost:3000/api/addiction_occurrences", params)
           .then(response => {
-            this.occurrences.push(this.response.data);
-            this.newOccurrence = {addiction_id: "", location: "", circumstance: "", craving: ""};
-          })
+            this.occurrences.push(response.data);
+            this.newOccurrence = {
+                                  addiction_id: "",
+                                  location: "",
+                                  circumstance: "",
+                                  amount: "",
+                                  cost: "",
+                                  craving: ""};
+                                  })
           .catch(error => {
-            
             this.errors = error.response.data.errors;
           });
-      }
+
+
+      },
+
+
+      // deletePerson: function(inputOccurrence) {
+      //   var index = this.addiction_occurrences.indexOf(inputOccurrence);
+      //   this.addiction_occurrences.splice(index, 1);
+      // },
+      // setSortAttribute: function(inputAttribute) {
+      //   if (this.sortAttribute === inputAttribute) {
+      //     this.sortOrder = this.sortOrder * -1;
+      //   } else {
+      //     this.sortOrder = 1;
+      //   }
+      //   this.sortAttribute = inputAttribute;
+      // }
     },
     computed: {}
 };

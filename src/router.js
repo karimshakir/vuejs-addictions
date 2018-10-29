@@ -1,9 +1,17 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+
 import Home from './views/Home.vue';
 import AddictionsNew from './views/AddictionsNew.vue';
 import CircumstancesNew from './views/CircumstancesNew.vue';
 import AddictionOccurrencesNew from './views/AddictionOccurrencesNew.vue';
+
+import Signup from './views/Signup.vue';
+import Login from "./views/Login.vue";
+import Logout from "./views/Logout.vue";
+
+
+// post "/addiction_occurrences" => 'addiction_occurrences#create'
 
 Vue.use(Router);
 
@@ -12,7 +20,11 @@ export default new Router({
     {path: '/',name: 'home',component: Home},
     {path: '/addictions/new',name: 'addictions-new',component: AddictionsNew},
     {path: '/circumstances/new',name: 'circumstances-new',component: CircumstancesNew},
-    {path: '/addictionOccurrences/new',name: 'addictionOccurrences-new',component: AddictionOccurrencesNew}
+    {path: '/addiction_occurrences/new',name: 'addiction-occurrences-new',component: AddictionOccurrencesNew},
+
+    { path: '/signup', name: 'signup', component: Signup },
+    { path: "/login", name: "login", component: Login },
+    { path: "/logout", name: "logout", component: Logout }
 
   ]
 });

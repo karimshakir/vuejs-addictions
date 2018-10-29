@@ -6,21 +6,31 @@
     <ul>
       <li v-for="error in errors">{{ error }}</li>
     </ul>
-
     <div>
-      
-      <button v-on:click="addAddiction()">Submit</button>
-      New Addiction:  <input v-model="newAddiction">
-      <p v-for="addiction in addictions">{{ addiction.name }}--------backend data</p>   
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Addiction_id
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a v-for="addiction in addictions" class="dropdown-item" href="#">{{ addiction.name }}</a>
+        <a class="dropdown-item" href="#">3-Other</a>
+      </div>
     </div>
 
-  </div>
 
+        
+        <button v-on:click="addAddiction()">Submit</button>
+        New Addiction:  <input v-model="newAddiction">
+        <p v-for="addiction in addictions">{{ addiction.name }}--------backend data</p>  
+
+    </div>
+  </div>
 </template>
 
-<style>
 
+<style>
 </style>
+
 
 <script>
   var axios = require('axios');
@@ -43,24 +53,24 @@ export default {
     },
 
     methods: {
-      addAddiction: function() {
+      // addAddiction: function() {
         
-        this.errors = [];
-        var params = {
-          name: this.newAddiction
-        };
+      //   this.errors = [];
+      //   var params = {
+      //     name: this.newAddiction
+      //   };
 
-        axios
-          .post("http://localhost:3000/api/addictions", params)
-          .then(response => {
-            this.addictions.push(this.response.data);
-            this.newAddiction = "";
-          })
-          .catch(error => {
+      //   axios
+      //     .post("http://localhost:3000/api/addictions", params)
+      //     .then(response => {
+      //       this.addictions.push(this.response.data);
+      //       this.newAddiction = "";
+      //     })
+      //     .catch(error => {
             
-            this.errors = error.response.data.errors;
-          });
-      }
+      //       this.errors = error.response.data.errors;
+      //     });
+      // }
     },
     computed: {}
 };
