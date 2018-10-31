@@ -1,9 +1,6 @@
 <template>
   <div class="circumstance">
     <h1>{{ message }}</h1>
-    <ul>
-      <li v-for="error in errors">{{ error }}</li>
-    </ul>
 
     <div>
       
@@ -30,10 +27,9 @@
 export default {
     data: function() {
       return {
-        message: "Discribe Current Condition",
+        message: "Describe Current Condition",
         circumstances: ["argument w/ spouse", "feeling lonely", "I'm sad", "bored", "alone", "lost money", " I hear voices", "no-one can see me", " hanging with Brian"],
         newCircumstance: ""
-        
       };
     },
     created: function() {
