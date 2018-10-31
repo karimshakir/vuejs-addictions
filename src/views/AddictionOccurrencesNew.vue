@@ -16,6 +16,14 @@ Addiction: <br>
   </option>
 </select>
 <br><br>
+
+Location: <br>
+<select v-model="newOccurrence.location">
+  <option v-for="location in locations" v-bind:value="location">
+    {{ location }}
+  </option>
+</select>
+<br><br>
 Circumstance: <br>
 <select v-model="newOccurrence.circumstance">
   <option v-for="circumstance in circumstances" v-bind:value="circumstance">
@@ -24,27 +32,22 @@ Circumstance: <br>
 </select>
 <br><br>
 Amount: <br>
-<select v-model="selected">
+<select v-model="newOccurrence.amount">
   <option v-for="amount in amounts" v-bind:value="amount.value">
-    {{ amount.text }}
+    {{ amount.value }}
+  </option>
+</select>
+<br><br>
+Cost: <br>
+<vue-numeric placeholder="$unit cost" v-bind:precision="2" v-bind:minus="false" v-bind:min="0" v-bind:max="2000" currency="$" separator="," v-model="cost"></vue-numeric>
+<br><br>
+Just a Craving? <br>
+<select v-model="newOccurrence.craving">
+  <option v-for="craving in cravings" v-bind:value="craving.value">
+    {{ craving.value }}
   </option>
 </select>
 {{ selected }}
-<br><br>
-Cost: <br>
-<vue-numeric v-bind:min="0" v-bind:max="2000" currency="$" separator="," v-model="price"></vue-numeric>
-
-
-
-<vue-numeric v-bind:min="1" v-bind:max="2000"></vue-numeric>
-<vue-numeric v-bind:minus="false"></vue-numeric>
-<vue-numeric v-bind:precision="2"></vue-numeric>
-<vue-numeric separator="."></vue-numeric>
-<vue-numeric placeholder="only number allowed"></vue-numeric>
-<vue-numeric :empty-value="1"></vue-numeric>
-
-
-
 <br>
 <br>
 
@@ -68,6 +71,7 @@ export default {
     data: function() {
       return {
         occurrences: [],
+        errors: [],
         newOccurrence: {               
                         addiction_id: "",
                         location: "",
@@ -79,27 +83,28 @@ export default {
         addictions: [],
         newAddiction: "",
 
-        errors: [],
 
         circumstances: ["argument w/ spouse", "feeling lonely", "I'm sad", "bored", "alone", "lost money", " I hear voices", "no-one can see me", " hanging with Brian"],
         newCircumstance: "",
 
-          selected: '',
+         locations: ["work", "home", "car", "restaurant"],
+        newLocation: "",
+
+    selected: '',
     amounts: [
       { text: 'One', value: 1 },
       { text: 'Two', value: 2 },
       { text: 'Three', value: 3 }
-    ],
-    
-  name: 'App',
-    price: ''
+    ], 
+    cost: '',
+
+       craving: '',
+    cravings: [
+      { text: 'True', value: 'true' },
+      { text: 'False', value: 'false' }
+    ], 
  
-
-
-
       };
-        
-
     },
 
     created: function() {
