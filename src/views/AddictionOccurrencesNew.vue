@@ -2,21 +2,22 @@
   <div class="addictionOccurrence">
     
     <h1>Addiction Occurrence</h1>
+    
 
     <ul>
       <li v-for="error in errors">{{ error }}</li>
     </ul>
 
     <div>
-          
+        
+
 Addiction: <br>
 <select v-model="newOccurrence.addiction_id">
   <option v-for="addiction in addictions" v-bind:value="addiction.name">
-    {{ addiction.name }}
+    {{ addiction.name }}  
   </option>
 </select>
 <br><br>
-
 Location: <br>
 <select v-model="newOccurrence.location">
   <option v-for="location in locations" v-bind:value="location">
@@ -103,7 +104,6 @@ export default {
       { text: 'True', value: 'true' },
       { text: 'False', value: 'false' }
     ], 
- 
       };
     },
 

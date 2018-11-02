@@ -8,12 +8,14 @@
     </ul>
     <div>
     <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Addiction_id
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a v-for="addiction in addictions" class="dropdown-item" href="#">{{ addiction.name }}</a>
-        <a class="dropdown-item" href="#">3-Other</a>
+
+Addiction: <br>
+<select v-model="newAddiction">
+  <option v-for="addiction in addictions" v-bind:value="addiction.name">
+    {{ addiction.name }}  
+  </option>
+</select>
+
       </div>
     </div>
 
@@ -24,7 +26,6 @@
         <p v-for="addiction in addictions">{{ addiction.name }}--------backend data</p>  
 
     </div>
-  </div>
 </template>
 
 
