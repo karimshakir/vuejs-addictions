@@ -1,46 +1,35 @@
 <template>
-  <div class="addiction">
-    
+  <div class="addiction">  
     <h1>Custom Addiction</h1>
-
     <ul>
       <li v-for="error in errors">{{ error }}</li>
     </ul>
     <div>
-    <div class="dropdown">
-
-Addiction: <br>
-<select v-model="newAddiction">
-  <option v-for="addiction in addictions" v-bind:value="addiction.name">
-    {{ addiction.name }}  
-  </option>
-</select>
-
+      <div class="dropdown">
+        Addiction: <br>
+        <select v-model="newAddiction">
+          <option v-for="addiction in addictions" v-bind:value="addiction.name">
+            {{ addiction.name }}  
+          </option>
+        </select>
       </div>
-    </div>
-
-
-        
-        <button v-on:click="addAddiction()">Submit</button>
-        New Addiction:  <input v-model="newAddiction">
-        <p v-for="addiction in addictions">{{ addiction.name }}--------backend data</p>  
-
+    </div> 
+    <br><br>        
+      <button v-on:click="addAddiction()">Submit</button>
+      New Addiction:  <input v-model="newAddiction">
+      <p v-for="addiction in addictions">{{ addiction.name }}</p>  
     </div>
 </template>
-
 
 <style>
 </style>
 
-
 <script>
   var axios = require('axios');
-
-export default {
+  export default {
     data: function() {
       return {
         addictions: [],
-
         newAddiction: "",
         errors: []
       };
@@ -53,25 +42,25 @@ export default {
         });
     },
 
-    methods: {
-      // addAddiction: function() {
-        
-      //   this.errors = [];
-      //   var params = {
-      //     name: this.newAddiction
-      //   };
+    methods: {    
+      // [[[[[[[[[[IMPORTANT----DO NOT TOUCH------IMPORTANT]]]]]]]]]]]]]]]
+      addAddiction: function() {    
+        this.errors = [];
+        var params = {
+          name: this.newAddiction
+        };
 
-      //   axios
-      //     .post("http://localhost:3000/api/addictions", params)
-      //     .then(response => {
-      //       this.addictions.push(this.response.data);
-      //       this.newAddiction = "";
-      //     })
-      //     .catch(error => {
+        axios
+          .post("http://localhost:3000/api/addictions", params)
+          .then(response => {
+            this.addictions.push(this.response.data);
+            this.newAddiction = "";
+          })
+          .catch(error => {
             
-      //       this.errors = error.response.data.errors;
-      //     });
-      // }
+            this.errors = error.response.data.errors;
+          });
+      }
     },
     computed: {}
 };

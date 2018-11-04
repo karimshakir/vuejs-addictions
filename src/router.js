@@ -11,6 +11,10 @@ import Signup from './views/Signup.vue';
 import Login from "./views/Login.vue";
 import Logout from "./views/Logout.vue";
 
+// import sunburst from "./views/Vue.D3.sunburst/src/components/sunburst.vue";
+
+
+
 import Testpage from "./views/Testpage.vue";
 
 
@@ -28,6 +32,8 @@ export default new Router({
     { path: '/signup', name: 'signup', component: Signup },
     { path: "/login", name: "login", component: Login },
     { path: "/logout", name: "logout", component: Logout },
+
+    // { path: "/sunburst", name: "sunburst", component: sunburst  },
 
     { path: "/testpage", name: "testpage", component: Testpage }
   ]
