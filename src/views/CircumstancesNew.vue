@@ -16,19 +16,19 @@
       <li v-for="error in errors">{{ error }}</li>
     </ul>
     <div>
-      <div class="dropdown">
+<!--       <div class="dropdown">
         Circumstance: <br>
         <select v-model="newCircumstance">
           <option v-for="circumstance in circumstances" v-bind:value="circumstance">
             {{ circumstance }}  
           </option>
         </select>
-      </div>
+      </div> -->
     </div> 
     <br><br>        
       <button v-on:click="addCircumstance()">Submit</button>
       New Circumstance:  <input v-model="newCircumstance">
-      <p v-for="circumstance in circumstances">{{ circumstance.name }}</p>  
+      <!-- <p v-for="circumstance in circumstances">{{ circumstance.description }}</p>   -->
     </div>
 
 
@@ -43,20 +43,41 @@
     data: function() {
       return {
         message: "Describe Current Condition",
-        circumstances: ["argument w/ spouse", "feeling lonely", "I'm sad", "bored", "alone", "lost money", " I hear voices", "no-one can see me", " hanging with Brian"],
-        newCircumstance: ""
+        circumstances: ["new start testing"],
+        newCircumstance: "",
+        errors: []
       };
     },
-    created: function() {   
+    created: function() {
+      axios
+        .get("http://localhost:3000/api/circumstances")
+        .then(response => {
+          this.circumstances = response.data;
+        });
     },
-    methods: {
-      addCircumstance: function() {
-        if (this.newCircumstance) {
-          this.circumstances.push(this.newCircumstance);
-          this.newCircumstance = "";
-        }
-      }
+    methods: {    
+      // [[[[[[[[[[IMPORTANT----DO NOT TOUCH------IMPORTANT]]]]]]]]]]]]]]]
+      addCircumstance: function() {    
+        this.errors = [];
+        var params = {
+          description: this.newCircumstance
+        };
+
+        axios
+          .post("http://localhost:3000/api/circumstances", params)
+          .then(response => {
+            this.circumstances.push(this.response.data);
+            this.newCircumstance = "";
+            // this.$router.push("/addiction_occurrences/new");  
+    
+          })
+          .catch(error => {
+            
+            this.errors = error.response.data.errors;
+          });
+      },
+
     },
     computed: {}
-  };
+};
 </script>
