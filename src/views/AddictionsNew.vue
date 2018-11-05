@@ -55,12 +55,16 @@
           .then(response => {
             this.addictions.push(this.response.data);
             this.newAddiction = "";
+            // this.$router.push("/addiction_occurrences/new");  
+    
           })
           .catch(error => {
             
             this.errors = error.response.data.errors;
           });
-      }
+      },
+ 
+
     },
     computed: {}
 };

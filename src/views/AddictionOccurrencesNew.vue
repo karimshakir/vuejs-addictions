@@ -5,10 +5,10 @@
         <li v-for="error in errors">{{ error }}</li>
       </ul>
     <div>
-        <form action="/#/addictions/new">
-    <input type="submit" value="Custom Addiction" />
-</form>
-Choose Addiction:
+      <form action="/#/addictions/new">
+        <input type="submit" value="Custom Addiction" />
+      </form>
+      Choose Addiction:
       <select v-model="newOccurrence.addiction_id">
         <option v-for="addiction in addictions" v-bind:value="addiction.name">
           {{ addiction.name }}  
@@ -22,13 +22,40 @@ Choose Addiction:
         </option>
       </select>
       <br><br>
+<!--       <form action="/#/circumstances/new">
+        <input type="submit" value="Custom Circumstance" />
+      </form>
       Circumstance: <br>
       <select v-model="newOccurrence.circumstance">
         <option v-for="circumstance in circumstances" v-bind:value="circumstance">
           {{ circumstance }}
         </option>
       </select>
-      <br><br>
+      <br><br> -->
+
+
+        <div class="circumstances">  
+          <ul>
+            <li v-for="error in errors">{{ error }}</li>
+          </ul>
+          <div>
+            <div class="dropdown">
+              Circumstance: <br>
+              <select v-model="newCircumstance">
+                <option v-for="circumstance in circumstances" v-bind:value="circumstance">
+                  {{ circumstance }}  
+                </option>
+              </select>
+            </div>
+          </div> 
+          <br><br>        
+            New Circumstance:  <input v-model="newCircumstance">
+            <button v-on:click="addCircumstance()">Submit</button>
+            <p v-for="circumstance in circumstances">{{ circumstance.name }}</p>  
+          </div>
+
+
+
       Amount: <br>
       <select v-model="newOccurrence.amount">
         <option v-for="amount in amounts" v-bind:value="amount.value">
@@ -98,8 +125,8 @@ Choose Addiction:
 
         craving: '',
         cravings: [
-          { text: 'True', value: 'true' },
-          { text: 'False', value: 'false' }
+          { text: 'False', value: 'false' },
+          { text: 'True', value: 'true' }
         ], 
       };
     },
