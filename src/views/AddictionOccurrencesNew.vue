@@ -5,15 +5,18 @@
         <li v-for="error in errors">{{ error }}</li>
       </ul>
     <div>
-      <form action="/#/addictions/new">
-        <input type="submit" value="Custom Addiction" />
-      </form>
+       
+      <button v-on:click="addAddiction()">Custom Addiction</button>
+       <input v-model="newAddiction"><br>
+      <!-- <p v-for="addiction in addictions">{{ addiction.name }}</p>   -->
+    </div>
       Choose Addiction:
-      <select v-model="newOccurrence.addiction_id">
-        <option v-for="addiction in addictions" v-bind:value="addiction.name">
+      <select v-model="newOccurrence.addiction_id" v-on:change="getCircumstances()">
+        <option v-for="addiction in addictions" v-bind:value="addiction.id">
           {{ addiction.name }}  
         </option>
       </select>
+
       <br><br>
       Location: <br>
       <select v-model="newOccurrence.location">
@@ -22,37 +25,14 @@
         </option>
       </select>
       <br><br>
-      <form action="/#/circumstances/new">
-        <input type="submit" value="Custom Circumstance" />
-      </form>
-      Circumstance: <br>
-      <select v-model="newOccurrence.circumstance">
-        <option v-for="circumstance in circumstances" v-bind:value="circumstance.description">
-          {{ circumstance.description }}
-        </option>
-      </select>
-      <br><br>
 
-<!-- 
-        <div class="circumstances">  
-          <ul>
-            <li v-for="error in errors">{{ error }}</li>
-          </ul>
-          <div>
-            <div class="dropdown">
-              Circumstance: <br>
-              <select v-model="newCircumstance">
-                <option v-for="circumstance in circumstances" v-bind:value="circumstance">
-                  {{ circumstance }}  
-                </option>
-              </select>
-            </div>
-          </div> 
-          <br><br>        
-            New Circumstance:  <input v-model="newCircumstance">
-            <button v-on:click="addCircumstance()">Submit</button>
-            <p v-for="circumstance in circumstances">{{ circumstance.name }}</p>  
-          </div> -->
+      Circumstance: <br>
+      <input v-model="newOccurrence.circumstance" list="past-circumstances">
+
+      <datalist id="past-circumstances">
+        <option v-for="pastAddictionOccurence in pastAddictionOccurences">{{pastAddictionOccurence.circumstance}}</option>
+      </datalist>
+      <br><br>
 
 
 
@@ -107,7 +87,7 @@
                         },
         addictions: [],
         newAddiction: "",
-
+        pastAddictionOccurences: [],
 
         circumstances: [],
         newCircumstance: "",
@@ -142,18 +122,41 @@
         .get("http://localhost:3000/api/addictions")
         .then(response => {
           this.addictions = response.data;
-        });
-
-      axios
-        .get("http://localhost:3000/api/circumstances")
-        .then(response => {
-          this.circumstances = response.data;
-        });    
+        });  
     },
 
     methods: {
+      getCircumstances: function() {
+        console.log("I'm running");
+        if (this.newOccurrence.addiction_id){
+          axios
+            .get("http://localhost:3000/api/addiction_occurrences?unique_circumstances=true&addiction_id=" + this.newOccurrence.addiction_id)
+            .then(response => {
+              this.pastAddictionOccurences = response.data;
+            });
+        }
+      },
       toggleCraving: function(inputOccurrence) {
         inputOccurrence.craving = !inputOccurrence.craving;
+      },
+      addAddiction: function() {    
+        this.errors = [];
+        var params = {
+          name: this.newAddiction
+        };
+
+        axios
+          .post("http://localhost:3000/api/addictions", params)
+          .then(response => {
+            this.addictions.push(this.response.data);
+            this.newAddiction = "";
+            // this.$router.push("/addiction_occurrences/new");  
+    
+          })
+          .catch(error => {
+            
+            this.errors = error.response.data.errors;
+          });
       },
 
       addOccurrence: function() {

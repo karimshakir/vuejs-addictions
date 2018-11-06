@@ -28,6 +28,10 @@
       time: {{occurrence.created_at}}<br><br>
     </div>
     <br><br>
+
+    <svg>
+      
+    </svg>
   </div>
 </template>
 
@@ -36,6 +40,8 @@
 
 <script>
   var axios = require('axios');
+
+
   export default {
     data: function() {
       return {
@@ -47,6 +53,7 @@
       };
     },
     created: function() {
+     
       axios
         .get("http://localhost:3000/api/addictions")
         .then(response => {
