@@ -5,16 +5,16 @@
         <li v-for="error in errors">{{ error }}</li>
       </ul>
     <div>
-       
       <button v-on:click="addAddiction()">Custom Addiction</button>
-       <input v-model="newAddiction"><br>
-      <!-- <p v-for="addiction in addictions">{{ addiction.name }}</p>   -->
+      <input v-model="newAddiction" list="newAddictionEntry"><br>    
     </div>
       Choose Addiction:
       <select v-model="newOccurrence.addiction_id" v-on:change="getCircumstances()">
+
         <option v-for="addiction in addictions" v-bind:value="addiction.id">
           {{ addiction.name }}  
-        </option>
+        </option>   
+
       </select>
 
       <br><br>
@@ -52,7 +52,7 @@
           {{ craving.value }}
         </option>
       </select>
-      {{ selected }}
+      <span>{{ selected }}</span>
       <br>
       <br>
       <button v-on:click="addOccurrence()">Submit</button> 
@@ -103,7 +103,7 @@
         ], 
         cost: '',
 
-        craving: '',
+        craving: 'false',
         cravings: [
           { text: 'False', value: 'false' },
           { text: 'True', value: 'true' }
@@ -128,7 +128,7 @@
     methods: {
       getCircumstances: function() {
         console.log("I'm running");
-        if (this.newOccurrence.addiction_id){
+        if (this.newOccurrence.addiction_id) {
           axios
             .get("http://localhost:3000/api/addiction_occurrences?unique_circumstances=true&addiction_id=" + this.newOccurrence.addiction_id)
             .then(response => {
@@ -148,13 +148,9 @@
         axios
           .post("http://localhost:3000/api/addictions", params)
           .then(response => {
-            this.addictions.push(this.response.data);
-            this.newAddiction = "";
-            // this.$router.push("/addiction_occurrences/new");  
-    
+            location.reload();
           })
           .catch(error => {
-            
             this.errors = error.response.data.errors;
           });
       },
@@ -185,6 +181,14 @@
             this.errors = error.response.data.errors;
           });
       },
+
+      refresh: function() {
+        axios
+          .get("http://localhost:3000/api/addictions")
+          .then(response => {
+            this.addictions = response.data;
+          }); 
+      }
       
       // addCircumstance: function() {
       //   if (this.newCircumstance) {
