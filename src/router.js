@@ -6,6 +6,7 @@ import AddictionsNew from './views/AddictionsNew.vue';
 import CircumstancesNew from './views/CircumstancesNew.vue';
 import AddictionOccurrencesNew from './views/AddictionOccurrencesNew.vue';
 import Stats from './views/Stats.vue';
+import Graph from './views/Graph.vue';
 
 import Signup from './views/Signup.vue';
 import Login from "./views/Login.vue";
@@ -35,6 +36,7 @@ export default new Router({
 
     // { path: "/sunburst", name: "sunburst", component: sunburst  },
 
-    { path: "/testpage", name: "testpage", component: Testpage }
+    { path: "/testpage", name: "testpage", component: Testpage },
+    { path: "/graph", name: "graph", component: Graph }
   ]
 });
