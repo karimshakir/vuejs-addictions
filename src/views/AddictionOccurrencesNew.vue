@@ -42,24 +42,18 @@
         </option>
       </select>
       <br><br>
-      -Cost- <br>
+<!--       -Cost- <br>
       <vue-numeric placeholder="$unit cost" v-bind:precision="2" v-bind:minus="false" v-bind:min="0" v-bind:max="2000" currency="$" separator="," v-model="cost"></vue-numeric>
-      <br><br>
+      <br><br> -->
       Just a Craving? <br><br>
-        <div v-model="newOccurrence.craving" class="col-4 col-12-small">
-          <input type="radio" id="demo-priority-low" name="demo-priority"  v-bind:value="craving.value">
-          <label for="demo-priority-low">True</label>
-        </div>
-        <div class="col-4 col-12-small">
-            <input type="radio" id="demo-priority-normal" name="demo-priority" checked v-bind:value="craving.value">
-            <label for="demo-priority-normal">False</label>
-        </div>
 
-<!--       <select v-model="newOccurrence.craving">
-        <option v-for="craving in cravings" v-bind:value="craving.value">
-          {{ craving.value }}
-        </option>
-      </select> -->
+        <input type="radio" id="one" value="true" v-model="newOccurrence.craving">
+        <label for="one">true</label>
+        <br>
+        <input type="radio" id="two" value="false" v-model="newOccurrence.craving">
+        <label for="two">false</label>
+        <br>
+
       <span>{{ selected }}</span>
       <br>
       <br>
@@ -89,22 +83,24 @@
         occurrences: [],
         errors: [],
         newOccurrence: {               
-                        addiction_id: "",
-                        location: "",
-                        circumstance: "",
-                        amount: "",
-                        cost: "",
-                        craving: ""
-                        },
+          addiction_id: "",
+          location: "",
+          circumstance: "",
+          amount: "",
+          cost: "",
+          craving: ""
+        },
         addictions: [],
         newAddiction: "",
         pastAddictionOccurences: [],
 
+        locations: ["work", "my-home", "car", "restaurant", "bar", "club",
+          "a-house", "other"],
+        newLocation: "",
+          
         circumstances: [],
         newCircumstance: "",
 
-        locations: ["work", "home", "car", "restaurant"],
-        newLocation: "",
 
         selected: '',
         amounts: [
@@ -114,11 +110,11 @@
         ], 
         cost: '',
 
-        craving: 'false',
         cravings: [
           { text: 'False', value: 'false' },
           { text: 'True', value: 'true' }
         ], 
+        newCraving: 'false'
       };
     },
 
@@ -146,9 +142,7 @@
             });
         }
       },
-      toggleCraving: function(inputOccurrence) {
-        inputOccurrence.craving = !inputOccurrence.craving;
-      },
+
       addAddiction: function() {    
         this.errors = [];
         var params = {

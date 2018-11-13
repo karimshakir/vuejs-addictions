@@ -29,6 +29,10 @@
                           <th>Addiction</th>
                           <th>Location</th>
                           <th>Circumstance</th>
+                          <th>Amount</th>
+                          <!-- <th>Cost</th> -->
+                          <th>Craving</th>
+                          <th>Date</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -36,49 +40,15 @@
                           <td>{{occurrence.addiction_name}}</td>
                           <td>{{occurrence.location}}</td>
                           <td>{{occurrence.circumstance}}</td>
+                          <td>{{occurrence.amount}}</td>
+                          <!-- <td>{{occurrence.cost}}</td> -->
+                          <td>{{occurrence.craving}}</td>
+                          <td>{{occurrence.created_at}}</td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
                 </section>
-
-<section>
-                  <div class="table-wrapper">
-                    <table class="alt">
-                      <thead>
-                        <tr>
-                          <th>Addiction</th>
-                          <th>Location</th>
-                          <th>Circumstance</th>
-                          <th>amount</th>
-                          <th>cost</th>
-                          <th>craving</th>
-                          <th>created_at</th>
-                        </tr>
-                      </thead>
-                      <div v-for="occurrence in occurrences">
-                      <tbody>
-                        <tr>
-                          <td>{{occurrence.addiction_name}}</td>
-                          <td>{{occurrence.location}}</td>
-                          <td>{{occurrence.circumstance}}</td>
-                          <td>{{occurrence.amount}}</td>
-                          <td>{{occurrence.cost}}</td>
-                          <td>{{occurrence.craving}}</td>
-                          <td>{{occurrence.created_at}}</td>
-                        </tr>
-                      </tbody>
-                    </div>
-                      <tfoot>
-                        <tr>
-                          <td colspan="2"></td>
-                          <td>100.00</td>
-                        </tr>
-                      </tfoot>
-                    </table>
-                  </div>
-</section>
-
     <br><br>
     <div v-for="occurrence in occurrences"> 
       addiction: {{occurrence.addiction_name}}<br>
@@ -111,7 +81,7 @@
         occurrences: [],
         frequency: '',
         durations: [
-          ],
+        ],
         newDuration: "",
         userAddictionId: "",
         errors: [],
@@ -145,6 +115,7 @@
               var lastOccurrence = this.occurrences[this.occurrences.length - 1];
 
               var start = Date.parse(lastOccurrence.created_at);
+              // console.log("start:" + start);
 
               if (this.timerInterval) {
                 clearInterval(this.timerInterval);
@@ -152,7 +123,11 @@
 
               this.timerInterval = setInterval(function() {
 
+              // console.log("Date.now():" + Date.now());
                 var millis = Date.now() - start;
+
+              // console.log("millis:" + millis);
+
 
                 var days = Math.floor(millis / (24 * 60 * 60 * 1000));
                 millis = millis - days * (24 * 60 * 60 * 1000);

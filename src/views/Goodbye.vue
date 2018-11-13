@@ -1,6 +1,6 @@
 <template>
   <div class="goodbye">
-    <h1>{{ message }}</h1>
+    <h1 center>{{ message }}</h1>
   </div>
 </template>
 
@@ -11,11 +11,12 @@
 export default {
   data: function() {
     return {
-      message: "Welcome to Vue.js!"
+      message: "Please Log In To Track an Occurrence!"
     };
   },
   created: function() {},
-  methods: {},
+  methods: {
+  },
   computed: {}
 };
 </script>

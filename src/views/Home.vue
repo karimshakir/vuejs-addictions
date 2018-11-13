@@ -8,7 +8,7 @@
 </div>
             <div class="inner">
               <header>
-                <h2>A free, fully responsive application,<br />
+                <h2>A versatile, fully responsive application,<br />
                 designed by Karim Shakir</h2>
                 <p></p>
               </header>
@@ -27,7 +27,7 @@
                   <span class="image">
                     <img src="https://cdn1.iconfinder.com/data/icons/basic-ui-elements-coloricon/21/38-512.png" alt="" width="444" height="410" />
                   </span>
-                  <a href="goodbye.html">
+                  <a href="/#/logout">
                     <h2>Logout</h2>
                     <div class="content">
                     </div>
