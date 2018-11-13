@@ -14,12 +14,72 @@
           </select>
 
           <br><br>
-          <button v-on:click="showStats()">Submit</button>
+          <button class="button primary" v-on:click="showStats()">Submit</button>
         </div>
       </div>
     <br>
     <h6>User Data:</h6>
     <h2>Time since last occurrence: {{ daysSince }} Days {{ hoursSince }} Hours {{ minutesSince }} Minutes {{ secondsSince }} Seconds</h2>
+
+                  <h3>Alternate</h3>
+                  <div class="table-wrapper">
+                    <table class="alt">
+                      <thead>
+                        <tr>
+                          <th>Addiction</th>
+                          <th>Location</th>
+                          <th>Circumstance</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="occurrence in occurrences">
+                          <td>{{occurrence.addiction_name}}</td>
+                          <td>{{occurrence.location}}</td>
+                          <td>{{occurrence.circumstance}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+
+<section>
+                  <div class="table-wrapper">
+                    <table class="alt">
+                      <thead>
+                        <tr>
+                          <th>Addiction</th>
+                          <th>Location</th>
+                          <th>Circumstance</th>
+                          <th>amount</th>
+                          <th>cost</th>
+                          <th>craving</th>
+                          <th>created_at</th>
+                        </tr>
+                      </thead>
+                      <div v-for="occurrence in occurrences">
+                      <tbody>
+                        <tr>
+                          <td>{{occurrence.addiction_name}}</td>
+                          <td>{{occurrence.location}}</td>
+                          <td>{{occurrence.circumstance}}</td>
+                          <td>{{occurrence.amount}}</td>
+                          <td>{{occurrence.cost}}</td>
+                          <td>{{occurrence.craving}}</td>
+                          <td>{{occurrence.created_at}}</td>
+                        </tr>
+                      </tbody>
+                    </div>
+                      <tfoot>
+                        <tr>
+                          <td colspan="2"></td>
+                          <td>100.00</td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+</section>
+
+    <br><br>
     <div v-for="occurrence in occurrences"> 
       addiction: {{occurrence.addiction_name}}<br>
       location: {{occurrence.location}}<br>
@@ -30,7 +90,6 @@
       freq: {{frequency}}<br>
       time: {{occurrence.created_at}}<br><br>
     </div>
-    <br><br>
 
     <svg>
       

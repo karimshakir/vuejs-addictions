@@ -47,7 +47,7 @@
                   <span class="image">
                     <img src="https://www.conservationlabs.com/wp-content/uploads/2017/12/water-background-2560%C3%971600.jpg" height="410" />
                   </span>
-                  <a href="generic.html">
+                  <a href="inspiration.html">
                     <h2>Inspiration</h2>
                     <div class="content">
                     </div>
@@ -143,7 +143,7 @@
 <style>
 body {
   /*background-color: #F0F0F0;*/
-  background-color: #E1E4E8;
+  /*background-color: #E1E4E8;*/
   /*background-color: black;*/
 }
 </style>
