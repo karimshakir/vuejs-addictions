@@ -1,20 +1,20 @@
 <template>
-  <div class="home">
+  <div class="home" style='height:700px'>
     <sunburst :data="tree">
  
   <!-- Add behaviors -->
-  <template slot-scope="{ nodes, actions }">
-    <highlightOnHover :nodes="nodes" :actions="actions" />
-    <zoomOnClick :nodes="nodes" :actions="actions" />
-  </template>
+    <template slot-scope="{ nodes, actions }">
+      <highlightOnHover :nodes="nodes" :actions="actions" />
+      <zoomOnClick :nodes="nodes" :actions="actions" />
+    </template>
+   
+    <!-- Add information to be displayed on top the graph -->
+    <nodeInfoDisplayer slot="top" slot-scope="{ nodes }" :current="nodes.mouseOver" :root="nodes.root" description="of visits begin with this sequence of pages" />
+   
+    <!-- Add bottom legend -->
+    <breadcrumbTrail slot="legend" slot-scope="{ nodes, colorGetter, width }" :current="nodes.mouseOver" :root="nodes.root" :colorGetter="colorGetter" :from="nodes.clicked" :width="width" />
  
-  <!-- Add information to be displayed on top the graph -->
-  <nodeInfoDisplayer slot="top" slot-scope="{ nodes }" :current="nodes.mouseOver" :root="nodes.root" description="of visits begin with this sequence of pages" />
- 
-  <!-- Add bottom legend -->
-  <breadcrumbTrail slot="legend" slot-scope="{ nodes, colorGetter, width }" :current="nodes.mouseOver" :root="nodes.root" :colorGetter="colorGetter" :from="nodes.clicked" :width="width" />
- 
-</sunburst>
+    </sunburst>
   </div>
 </template>
 

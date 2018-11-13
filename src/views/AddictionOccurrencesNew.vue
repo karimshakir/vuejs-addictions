@@ -1,24 +1,26 @@
 <template>
-  <div class="addictionOccurrence">  
+
+
+  <div class="addictionOccurrence"> 
     <h1>Addiction Occurrence</h1>
       <ul>
         <li v-for="error in errors">{{ error }}</li>
       </ul>
-    <div>
-      <button v-on:click="addAddiction()">Custom Addiction</button>
-      <input v-model="newAddiction" list="newAddictionEntry"><br>    
-    </div>
-      Choose Addiction:
+
+    <ul class="actions">
+      <li><button class="button primary" v-on:click="addAddiction()">Add Addiction</button></li>
+      <li><input v-model="newAddiction" list="newAddictionEntry" placeholder="   addiction name"><br></li>    
+    </ul>
+      <h3>-Choose Addiction-</h3>
       <select v-model="newOccurrence.addiction_id" v-on:change="getCircumstances()">
 
         <option v-for="addiction in addictions" v-bind:value="addiction.id">
           {{ addiction.name }}  
         </option>   
-
       </select>
 
       <br><br>
-      Location: <br>
+      -Location- <br>
       <select v-model="newOccurrence.location">
         <option v-for="location in locations" v-bind:value="location">
           {{ location }}
@@ -26,36 +28,45 @@
       </select>
       <br><br>
 
-      Circumstance: <br>
+      -Circumstance- <br>
       <input v-model="newOccurrence.circumstance" list="past-circumstances">
-
       <datalist id="past-circumstances">
         <option v-for="pastAddictionOccurence in pastAddictionOccurences">{{pastAddictionOccurence.circumstance}}</option>
       </datalist>
       <br><br>
 
-
-
-      Amount: <br>
+      -Amount- <br>
       <select v-model="newOccurrence.amount">
         <option v-for="amount in amounts" v-bind:value="amount.value">
           {{ amount.value }}
         </option>
       </select>
       <br><br>
-      Cost: <br>
+      -Cost- <br>
       <vue-numeric placeholder="$unit cost" v-bind:precision="2" v-bind:minus="false" v-bind:min="0" v-bind:max="2000" currency="$" separator="," v-model="cost"></vue-numeric>
       <br><br>
-      Just a Craving? <br>
-      <select v-model="newOccurrence.craving">
+      Just a Craving? <br><br>
+        <div v-model="newOccurrence.craving" class="col-4 col-12-small">
+          <input type="radio" id="demo-priority-low" name="demo-priority"  v-bind:value="craving.value">
+          <label for="demo-priority-low">True</label>
+        </div>
+        <div class="col-4 col-12-small">
+            <input type="radio" id="demo-priority-normal" name="demo-priority" checked v-bind:value="craving.value">
+            <label for="demo-priority-normal">False</label>
+        </div>
+
+<!--       <select v-model="newOccurrence.craving">
         <option v-for="craving in cravings" v-bind:value="craving.value">
           {{ craving.value }}
         </option>
-      </select>
+      </select> -->
       <span>{{ selected }}</span>
       <br>
       <br>
-      <button v-on:click="addOccurrence()">Submit</button> 
+
+      <transition name="fade">
+      <button class="primary button"v-on:click="addOccurrence()">Submit</button> 
+      </transition>
       <br><br>                          
     </div>
   </div>
@@ -127,7 +138,6 @@
 
     methods: {
       getCircumstances: function() {
-        console.log("I'm running");
         if (this.newOccurrence.addiction_id) {
           axios
             .get("http://localhost:3000/api/addiction_occurrences?unique_circumstances=true&addiction_id=" + this.newOccurrence.addiction_id)
@@ -180,6 +190,8 @@
           .catch(error => {
             this.errors = error.response.data.errors;
           });
+         
+            this.$router.push("/")
       },
 
       refresh: function() {
@@ -189,13 +201,6 @@
             this.addictions = response.data;
           }); 
       }
-      
-      // addCircumstance: function() {
-      //   if (this.newCircumstance) {
-      //     this.circumstances.push(this.newCircumstance);
-      //     this.newCircumstance = "";
-      //   }
-      // }
     },
     computed: {}
 };
