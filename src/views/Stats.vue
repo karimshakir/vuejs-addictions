@@ -94,7 +94,7 @@
     },
     created: function() {
       axios
-        .get("http://localhost:3000/api/addictions")
+        .get("http://localhost:3000/api/addictions?by_user=yes")
         .then(response => {
           this.addictions = response.data;
         });

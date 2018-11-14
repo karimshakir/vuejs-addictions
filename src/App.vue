@@ -4,16 +4,18 @@
 
 
 <div class="container">
-  <!-- DO NOT TOUCH THIS -->
   <!-- <transition name="fade"> -->
+
+  <!-- DO NOT TOUCH router-view-->
     <router-view/>
+
   <!-- </transition> -->
 </div>
   </div>
 </template>
 
 <style>
-.fade-enter-active {
+/*.fade-enter-active {
   transition: all 1s ease;
 }
 .fade-leave-active {
@@ -21,6 +23,6 @@
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;
-}
+}*/
 
 </style>
