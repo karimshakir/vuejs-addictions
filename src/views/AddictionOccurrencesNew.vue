@@ -129,7 +129,7 @@
         .get("http://localhost:3000/api/addictions")
         .then(response => {
           this.addictions = response.data;
-        });  
+        }); 
     },
 
     methods: {
@@ -185,7 +185,7 @@
             this.errors = error.response.data.errors;
           });
          
-            this.$router.push("/")
+        this.$router.push("/");
       },
 
       refresh: function() {

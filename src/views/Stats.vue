@@ -50,7 +50,7 @@
                   </div>
                 </section>
     <br><br>
-    <div v-for="occurrence in occurrences"> 
+<!--     <div v-for="occurrence in occurrences"> 
       addiction: {{occurrence.addiction_name}}<br>
       location: {{occurrence.location}}<br>
       circumstance: {{occurrence.circumstance}}<br>
@@ -59,7 +59,7 @@
       craving: {{occurrence.craving}}<br>
       freq: {{frequency}}<br>
       time: {{occurrence.created_at}}<br><br>
-    </div>
+    </div> -->
 
     <svg>
       

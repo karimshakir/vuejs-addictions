@@ -9,7 +9,7 @@
     <br><br>        
       <button v-on:click="addAddiction()">Submit</button>
       New Addiction:  <input v-model="newAddiction">
-      <!-- <p v-for="addiction in addictions">{{ addiction.name }}</p>   -->
+      <p v-for="addiction in addictions">{{ addiction.name }}</p>  
     </div>
 </template>
 
@@ -35,7 +35,6 @@
     },
 
     methods: {    
-      // [[[[[[[[[[IMPORTANT----DO NOT TOUCH------IMPORTANT]]]]]]]]]]]]]]]
       addAddiction: function() {    
         this.errors = [];
         var params = {
@@ -47,7 +46,7 @@
           .then(response => {
             this.addictions.push(this.response.data);
             this.newAddiction = "";
-            // this.$router.push("/addiction_occurrences/new");  
+
     
           })
           .catch(error => {
@@ -56,7 +55,6 @@
           });
       },
  
-
     },
     computed: {}
 };
