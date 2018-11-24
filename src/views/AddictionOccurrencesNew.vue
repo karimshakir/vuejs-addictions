@@ -18,8 +18,8 @@
           {{ addiction.name }}  
         </option>   
       </select>
-
       <br><br>
+      
       -Location- <br>
       <select v-model="newOccurrence.location">
         <option v-for="location in locations" v-bind:value="location">
@@ -42,11 +42,8 @@
         </option>
       </select>
       <br><br>
-<!--       -Cost- <br>
-      <vue-numeric placeholder="$unit cost" v-bind:precision="2" v-bind:minus="false" v-bind:min="0" v-bind:max="2000" currency="$" separator="," v-model="cost"></vue-numeric>
-      <br><br> -->
-      Just a Craving? <br><br>
 
+      Just a Craving? <br><br>
         <input type="radio" id="one" value="true" v-model="newOccurrence.craving">
         <label for="one">true</label>
         <br>
@@ -100,7 +97,6 @@
           
         circumstances: [],
         newCircumstance: "",
-
 
         selected: '',
         amounts: [

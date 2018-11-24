@@ -1,5 +1,5 @@
 <template>
-  <div class="home" style='height:600px'>
+  <div class="home" style='height:665px'>
     <sunburst :data="tree">
  
   <!-- Add behaviors -->
@@ -21,7 +21,6 @@
 
 <style>
 </style>
-
 
 <script>
 var axios = require('axios');

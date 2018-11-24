@@ -45,9 +45,7 @@
           .post("http://localhost:3000/api/addictions", params)
           .then(response => {
             this.addictions.push(this.response.data);
-            this.newAddiction = "";
-
-    
+            this.newAddiction = "";   
           })
           .catch(error => {
             

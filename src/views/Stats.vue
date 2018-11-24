@@ -12,7 +12,6 @@
               {{ addiction.name }}
             </option>
           </select>
-
           <br><br>
           <button class="button primary" v-on:click="showStats()">Submit</button>
         </div>
@@ -30,7 +29,6 @@
                           <th>Location</th>
                           <th>Circumstance</th>
                           <th>Amount</th>
-                          <!-- <th>Cost</th> -->
                           <th>Craving</th>
                           <th>Date</th>
                         </tr>
@@ -41,7 +39,6 @@
                           <td>{{occurrence.location}}</td>
                           <td>{{occurrence.circumstance}}</td>
                           <td>{{occurrence.amount}}</td>
-                          <!-- <td>{{occurrence.cost}}</td> -->
                           <td>{{occurrence.craving}}</td>
                           <td>{{occurrence.created_at}}</td>
                         </tr>
@@ -50,26 +47,8 @@
                   </div>
                 </section>
     <br><br>
-<!--     <div v-for="occurrence in occurrences"> 
-      addiction: {{occurrence.addiction_name}}<br>
-      location: {{occurrence.location}}<br>
-      circumstance: {{occurrence.circumstance}}<br>
-      amount: {{occurrence.amount}}<br>
-      cost: {{occurrence.cost}}<br>
-      craving: {{occurrence.craving}}<br>
-      freq: {{frequency}}<br>
-      time: {{occurrence.created_at}}<br><br>
-    </div> -->
-
-    <svg>
-      
-    </svg>
   </div>
 </template>
-
-<style>
-</style>
-
 <script>
   var axios = require('axios');
 
@@ -115,7 +94,6 @@
               var lastOccurrence = this.occurrences[this.occurrences.length - 1];
 
               var start = Date.parse(lastOccurrence.created_at);
-              // console.log("start:" + start);
 
               if (this.timerInterval) {
                 clearInterval(this.timerInterval);
@@ -123,11 +101,7 @@
 
               this.timerInterval = setInterval(function() {
 
-              // console.log("Date.now():" + Date.now());
                 var millis = Date.now() - start;
-
-              // console.log("millis:" + millis);
-
 
                 var days = Math.floor(millis / (24 * 60 * 60 * 1000));
                 millis = millis - days * (24 * 60 * 60 * 1000);
