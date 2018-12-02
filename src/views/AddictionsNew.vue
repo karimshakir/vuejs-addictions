@@ -28,7 +28,7 @@
     },
     created: function() {
       axios
-        .get("http://localhost:3000/api/addictions")
+        .get("/api/addictions")
         .then(response => {
           this.addictions = response.data;
         });
@@ -42,7 +42,7 @@
         };
 
         axios
-          .post("http://localhost:3000/api/addictions", params)
+          .post("/api/addictions", params)
           .then(response => {
             this.addictions.push(this.response.data);
             this.newAddiction = "";   

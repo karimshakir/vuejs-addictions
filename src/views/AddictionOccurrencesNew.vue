@@ -116,13 +116,13 @@
 
     created: function() {
       axios
-        .get("http://localhost:3000/api/addiction_occurrences")
+        .get("/api/addiction_occurrences")
         .then(response => {
           this.occurrences = response.data;
         });
 
       axios
-        .get("http://localhost:3000/api/addictions")
+        .get("/api/addictions")
         .then(response => {
           this.addictions = response.data;
         }); 
@@ -132,7 +132,7 @@
       getCircumstances: function() {
         if (this.newOccurrence.addiction_id) {
           axios
-            .get("http://localhost:3000/api/addiction_occurrences?unique_circumstances=true&addiction_id=" + this.newOccurrence.addiction_id)
+            .get("/api/addiction_occurrences?unique_circumstances=true&addiction_id=" + this.newOccurrence.addiction_id)
             .then(response => {
               this.pastAddictionOccurences = response.data;
             });
@@ -146,7 +146,7 @@
         };
 
         axios
-          .post("http://localhost:3000/api/addictions", params)
+          .post("/api/addictions", params)
           .then(response => {
             location.reload();
           })
@@ -166,7 +166,7 @@
                       craving: this.newOccurrence.craving
                       }; 
         axios
-          .post("http://localhost:3000/api/addiction_occurrences", params)
+          .post("/api/addiction_occurrences", params)
           .then(response => {
             this.occurrences.push(response.data);
             this.newOccurrence = {
@@ -186,7 +186,7 @@
 
       refresh: function() {
         axios
-          .get("http://localhost:3000/api/addictions")
+          .get("/api/addictions")
           .then(response => {
             this.addictions = response.data;
           }); 

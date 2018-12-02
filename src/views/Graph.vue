@@ -52,7 +52,7 @@ export default {
   },
   created: function() {
     axios
-      .get("http://localhost:3000/api/graph_info").
+      .get("/api/graph_info").
       then(response => {
         this.tree = response.data;
       });

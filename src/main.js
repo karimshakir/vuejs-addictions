@@ -5,6 +5,10 @@ import axios from "axios";
 import Vue2Filters from "vue2-filters";
 import VueNumeric from 'vue-numeric';
 
+axios.defaults.baseURL = 
+  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://evening-fjord-37572.herokuapp.com";
+
+
 Vue.use(Vue2Filters);
 Vue.use(VueNumeric);
 

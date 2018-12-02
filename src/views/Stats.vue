@@ -73,7 +73,7 @@
     },
     created: function() {
       axios
-        .get("http://localhost:3000/api/addictions?by_user=yes")
+        .get("/api/addictions?by_user=yes")
         .then(response => {
           this.addictions = response.data;
         });
@@ -85,7 +85,7 @@
           name: this.userAddictionId
         };
         axios
-          .get("http://localhost:3000/api/addiction_occurrences/?addiction_id=" + this.userAddictionId)
+          .get("/api/addiction_occurrences/?addiction_id=" + this.userAddictionId)
           .then(response => {
             this.occurrences = response.data;          
             this.frequency = this.occurrences.length;  
