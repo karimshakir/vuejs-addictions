@@ -106,7 +106,7 @@
                 </article>
                 <article class="style5">
                   <span class="image">
-                    <img src="images/plank.jpg" alt="" width="444" height="410"/>
+                    <img src="/images/plank.jpg" alt="" width="444" height="410"/>
                   </span>
                   <a href="https://www.netflix.com/">
                     <h2>Netflix</h2>
