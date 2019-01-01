@@ -1,14 +1,14 @@
 <template>
   <div class="home" style="margin: 70px">
   <!-- <div class="home"> -->
-    <h1>Welcome to Addictions!!</h1>
+    <h1>Welcome to RootCause</h1>
   
 <!-- Main -->
           <div id="main">
 </div>
             <div class="inner">
               <header>
-                <h2>A versatile, fully responsive application,<br />
+                <h2>Data Driven Prevention<br />
                 designed by Karim Shakir</h2>
                 <p></p>
               </header>

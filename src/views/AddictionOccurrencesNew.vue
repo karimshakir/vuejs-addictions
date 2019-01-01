@@ -41,7 +41,7 @@
           {{ amount.value }}
         </option>
       </select>
-      <br><br>
+      <br><br>addis
 
       Just a Craving? <br><br>
         <input type="radio" id="one" value="true" v-model="newOccurrence.craving">
