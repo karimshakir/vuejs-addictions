@@ -141,11 +141,6 @@
 </template>
 
 <style>
-body {
-  /*background-color: #F0F0F0;*/
-  /*background-color: #E1E4E8;*/
-  /*background-color: black;*/
-}
 </style>
 
 <script>
