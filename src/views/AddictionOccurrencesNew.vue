@@ -11,9 +11,9 @@
       <li><button class="button primary" v-on:click="addAddiction()">Add Addiction</button></li>
       <li><input v-model="newAddiction" list="newAddictionEntry" placeholder="   addiction name"><br></li>    
     </ul>
+
       <h3>-Choose Addiction-</h3>
       <select v-model="newOccurrence.addiction_id" v-on:change="getCircumstances()">
-
         <option v-for="addiction in addictions" v-bind:value="addiction.id">
           {{ addiction.name }}  
         </option>   
@@ -41,7 +41,7 @@
           {{ amount.value }}
         </option>
       </select>
-      <br><br>addis
+      <br><br>
 
       Just a Craving? <br><br>
         <input type="radio" id="one" value="true" v-model="newOccurrence.craving">
