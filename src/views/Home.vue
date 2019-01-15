@@ -1,7 +1,7 @@
 <template>
   <div class="home" style="margin: 70px">
   <!-- <div class="home"> -->
-    <h1>Welcome to RootCause</h1>
+    <h1>Welcome to Root-Cause</h1>
   
 <!-- Main -->
           <div id="main">
@@ -60,7 +60,6 @@
                   <a href="/#/signup">
                     <h2>Signup</h2>
                     <div class="content">
-                      <!-- <p>I had an occurrence but I will defeat this!!!.</p> -->
                     </div>
                   </a>
                 </article>
