@@ -148,7 +148,7 @@
         axios
           .post("/api/addictions", params)
           .then(response => {
-            location.reload();
+e
           })
           .catch(error => {
             this.errors = error.response.data.errors;

@@ -1,4 +1,4 @@
-<template>
+        <template>
   <div class="home" style='height:665px'>
     <sunburst :data="tree">
  
